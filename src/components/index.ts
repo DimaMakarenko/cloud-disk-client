@@ -1,5 +1,5 @@
 export * from './Navbar';
 export * from './Input';
-export * from './Auth/SignIn';
-export * from './Auth/SignUp';
+export * from './Forms/SignIn';
+export * from './Forms/SignUp';
 export * from './Button';

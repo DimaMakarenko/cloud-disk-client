@@ -1,6 +1,8 @@
 import { ReactElement, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { Routes } from 'routes';
+
 const Link = ({ children }: { children: ReactNode }): ReactElement => (
   <span className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
     {children}
@@ -21,10 +23,10 @@ export const NabBar = (): ReactElement => {
           </div>
           <div className="hidden sm:block sm:ml-6">
             <div className="flex space-x-4 right-0 justify-end">
-              <NavLink to="/sign-in">
+              <NavLink to={Routes.SingIn}>
                 <Link>Sign In</Link>
               </NavLink>
-              <NavLink to="/sign-up">
+              <NavLink to={Routes.SingUp}>
                 <Link>Sign Up</Link>
               </NavLink>
             </div>
