@@ -1,9 +1,11 @@
 import { ReactElement } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 import { Input, Button } from 'components';
+import { signUp } from 'store';
 
-type SignUpFormType = {
+export type SignUpFormType = {
   fullName: string;
   email: string;
   password: string;
@@ -12,9 +14,9 @@ type SignUpFormType = {
 export const SignUpForm = (): ReactElement => {
   const { register, handleSubmit } = useForm<SignUpFormType>();
 
-  const onSubmit = handleSubmit((data) => {
-    console.log('sign up with', data);
-  });
+  const dispatch = useDispatch();
+
+  const onSubmit = handleSubmit((data) => dispatch(signUp(data)));
 
   return (
     <form onSubmit={onSubmit}>

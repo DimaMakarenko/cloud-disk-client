@@ -1,19 +1,24 @@
 import { ReactElement } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 import { Input, Button } from 'components';
+import { signIn } from 'store/modules/user';
 
-type SignInFormType = {
+export type SignInFormType = {
   email: string;
   password: string;
 };
 
 export const SignInForm = (): ReactElement => {
-  const { register, handleSubmit } = useForm<SignInFormType>();
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<SignInFormType>();
+  const dispatch = useDispatch();
 
-  const onSubmit = handleSubmit((data) => {
-    console.log('sign in with ', data);
-  });
+  const onSubmit = handleSubmit((data) => dispatch(signIn(data)));
 
   return (
     <form onSubmit={onSubmit}>
@@ -31,7 +36,7 @@ export const SignInForm = (): ReactElement => {
         placeholder="Password"
         register={{ ...register('password') }}
       />
-      <Button type="submit">Sign in</Button>
+      <Button type="submit">{isSubmitting ? 'Loading...' : 'Sign in'}</Button>
     </form>
   );
 };

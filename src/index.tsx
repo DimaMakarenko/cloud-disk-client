@@ -3,8 +3,8 @@ import * as ReactDOMClient from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import './index.css';
-import { store } from 'reducers';
 import { App } from 'routes';
+import { store } from 'store';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = ReactDOMClient.createRoot(container);
