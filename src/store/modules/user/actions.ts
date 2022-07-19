@@ -35,3 +35,19 @@ export const signIn = ({ email, password }: SignInFormType) => {
     }
   };
 };
+
+export const auth = (token: string) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/auth/auth', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      dispatch(setUser(response.data.user));
+      response?.data?.token && localStorage.setItem('token', response.data.token);
+    } catch (e) {
+      console.error(e);
+      localStorage.removeItem('token');
+    }
+  };
+};
